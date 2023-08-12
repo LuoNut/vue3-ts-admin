@@ -1,18 +1,25 @@
 <template>
   <div class="layout">
     <!-- 左边菜单 -->
-    <div class="layout_slider">
+    <div class="layout_slider" :class="{ fold: LayOutSettingStore.fold }">
       <Logo></Logo>
       <el-scrollbar class="scrollbar">
-        <el-menu background-color="$base-menu-background" text-color="white">
+        <el-menu
+          text-color="white"
+          background-color="#001529"
+          :default-active="$route.path"
+          :collapse="LayOutSettingStore.fold ? true : false"
+        >
           <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout_tabbar">222</div>
+    <div class="layout_tabbar" :class="{ fold: LayOutSettingStore.fold }">
+      <Tabbar></Tabbar>
+    </div>
     <!-- 右边内容区域 -->
-    <div class="layout_main">
+    <div class="layout_main" :class="{ fold: LayOutSettingStore.fold }">
       <Main></Main>
     </div>
   </div>
@@ -23,7 +30,21 @@ import Logo from '@/layout/logo/index.vue'
 import useUserStore from '@/store/modules/useUserStore'
 import Menu from '@/layout/menu/index.vue'
 import Main from '@/layout/main/index.vue'
+import Tabbar from '@/layout/tabbar/index.vue'
+import { useRoute } from 'vue-router'
+import useLayOutSettingStore from '@/store/modules/useLayoutSettingStore'
+//用户menu数据仓库
 let userStore = useUserStore()
+//路由跳转
+const $route = useRoute()
+
+//获取layout配置的仓库
+const LayOutSettingStore = useLayOutSettingStore()
+</script>
+<script lang="ts">
+export default {
+  name: 'Layout',
+}
 </script>
 
 <style scoped lang="scss">
@@ -34,8 +55,17 @@ let userStore = useUserStore()
     width: $base-menu-width;
     height: 100vh;
     background-color: $base-menu-background;
+    transition: all 0.3s;
+
     .scrollbar {
       height: calc(100% - $base-menu-logo-height);
+      .el-menu {
+        border-right: none;
+      }
+    }
+
+    &.fold {
+      width: $base-menu-min-width;
     }
   }
   .layout_tabbar {
@@ -43,17 +73,28 @@ let userStore = useUserStore()
     left: $base-menu-width;
     top: 0;
     width: calc(100% - $base-menu-width);
-    height: $base-menu-height;
+    height: $base-tabbar-height;
     background-color: bisque;
+    transition: all 0.3s;
+    &.fold {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
   .layout_main {
     position: absolute;
-    left: $base-menu-width;
-    top: $base-menu-height;
     width: calc(100% - $base-menu-width);
-    height: calc(100vh - $base-menu-height);
-    overflow: auto;
+    height: calc(100vh - $base-tabbar-height);
+    left: $base-menu-width;
+    top: $base-tabbar-height;
     padding: 20px;
+    overflow: auto;
+    transition: all 0.3s;
+
+    &.fold {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
 }
 </style>

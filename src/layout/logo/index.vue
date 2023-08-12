@@ -8,18 +8,24 @@
 <script setup lang="ts">
 import setting from '@/setting'
 </script>
+<script lang="ts">
+export default {
+    name: 'Logo'
+}
+</script>
 
 <style scoped lang="scss">
 .logo {
   display: flex;
-  width: 100%;
   height: $base-menu-logo-height;
+  width: $base-menu-width;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   color: white;
+
   img {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
   }
   p {
     font-size: $base-logo-title-fontSize;
