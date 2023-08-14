@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
 const useLayoutSettingStore = defineStore('layoutSetting', {
   state: () => {
@@ -6,7 +6,7 @@ const useLayoutSettingStore = defineStore('layoutSetting', {
       fold: false,
       refsh: false, //仓库这个属性用于控制刷新效果
     }
-  }
+  },
 })
 
 export default useLayoutSettingStore

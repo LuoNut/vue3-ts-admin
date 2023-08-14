@@ -1,9 +1,9 @@
-import { reqLogin, reqUserInfo } from '@/api/user'
-import { loginFormData, loginResponseData, userResponseData } from '@/api/user/type'
+import { reqLogin, reqLogout, reqUserInfo } from '@/api/user'
 import { constantRoute } from '@/router/routes'
 import { GET_TOKEN, REMOVE_TOKEN, SET_TOKEN } from '@/utils/token'
 import { defineStore } from 'pinia'
 import { userState } from './type/type'
+import { loginFormData, loginResponseData, userInfoReponseData } from '@/api/user/type'
 
 const useUserStore = defineStore('user', {
   state: (): userState => {
@@ -11,8 +11,7 @@ const useUserStore = defineStore('user', {
       token: GET_TOKEN(),
       menuRoutes: constantRoute,
       username: '',
-      avatar: ''
-
+      avatar: '',
     }
   },
   actions: {
@@ -23,30 +22,36 @@ const useUserStore = defineStore('user', {
      */
     async userLogin(loginFrom: loginFormData) {
       const result: loginResponseData = await reqLogin(loginFrom)
+
       if (result.code === 200) {
-        this.token = result.data.token as string
+        this.token = result.data as string
         SET_TOKEN(this.token)
         return 'ok'
       } else {
-        return Promise.reject(new Error(result.data.message))
+        return Promise.reject(new Error(result.data))
       }
     },
     async userInfo() {
-      const result: userResponseData = await reqUserInfo()
+      const result: userInfoReponseData = await reqUserInfo()
+
       if (result.code === 200) {
-        this.username = result.data.username
+        this.username = result.data.name
         this.avatar = result.data.avatar
         return 'ok'
       } else {
-        return Promise.reject(new Error(result.data.message))
+        return Promise.reject(new Error(result.message))
       }
     },
-    userLogout() {
-      this.token = '',
-      this.username = '',
-      this.avatar = ''
-      REMOVE_TOKEN()
-    }
+    async userLogout() {
+      let result: any = await reqLogout()
+      if (result.code === 200) {
+        ;(this.token = ''), (this.username = ''), (this.avatar = '')
+        REMOVE_TOKEN()
+        return 'ok'
+      } else {
+        return Promise.reject(new Error(result.message))
+      }
+    },
   },
 })
 

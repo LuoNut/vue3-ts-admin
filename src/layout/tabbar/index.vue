@@ -2,25 +2,23 @@
   <div class="tabbar">
     <!-- tabbar左侧 -->
 
-      <Breadcrumb></Breadcrumb>
+    <Breadcrumb></Breadcrumb>
 
     <!-- tabbar右侧 -->
 
-      <Setting></Setting>
-
+    <Setting></Setting>
   </div>
 </template>
 
 <script setup lang="ts">
-import Breadcrumb from "@/layout/tabbar/breadcrumb/index.vue";
-import Setting from "@/layout/tabbar/setting/index.vue";
+import Breadcrumb from '@/layout/tabbar/breadcrumb/index.vue'
+import Setting from '@/layout/tabbar/setting/index.vue'
 </script>
 <script lang="ts">
 export default {
   name: 'Tabbar',
 }
 </script>
-
 
 <style scoped lang="scss">
 .tabbar {
@@ -29,5 +27,4 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-
 </style>

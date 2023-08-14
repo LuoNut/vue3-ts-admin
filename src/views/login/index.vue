@@ -53,7 +53,7 @@ import { getTime } from '@/utils/time'
 const { userLogin } = useUserStore()
 const $router = useRouter()
 const $route = useRoute()
-const loginFrom = reactive({ username: 'admin', password: '111111' })
+const loginFrom = reactive({ username: 'admin', password: 'atguigu123' })
 const loading = ref(false)
 /**
  * 账号自定义检验规则
@@ -100,7 +100,7 @@ async function login() {
   try {
     loading.value = true
     await userLogin(loginFrom)
-    $router.push({ path: $route.query.redirect as string || '/'})
+    $router.push({ path: ($route.query.redirect as string) || '/' })
     loading.value = false
     ElNotification({
       type: 'success',
@@ -116,8 +116,6 @@ async function login() {
     })
   }
 }
-
-
 </script>
 
 <style lang="scss" scoped>

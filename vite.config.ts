@@ -35,10 +35,11 @@ export default defineConfig(({ command, mode }) => {
     //代理跨越
     server: {
       proxy: {
-        '/api': {
-          target: 'http://jsonplaceholder.typicode.com',
+        [env.VITE_APP_BASE_API]: {
+          target: env.VITE_SERVE,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
+        },
       }
     }
   }

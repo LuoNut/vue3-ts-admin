@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import useLayoutSettingStore from '@/store/modules/useLayoutSettingStore'
 import useUserStore from '@/store/modules/useUserStore'
-import { useRouter, useRoute } from "vue-router";
+import { useRouter, useRoute } from 'vue-router'
 const LayoutSettingStore = useLayoutSettingStore()
 const userStore = useUserStore()
 const $router = useRouter()
@@ -55,9 +55,9 @@ const fullScreen = () => {
 /**
  * 退出登录的回调函数
  */
-const logout = () => {
-  userStore.userLogout()
-  $router.push({ path: '/login', query: {redirect: $route.path}})
+const logout = async() => {
+  await userStore.userLogout()
+  $router.push({ path: '/login', query: { redirect: $route.path } })
 }
 </script>
 <script lang="ts">

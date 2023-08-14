@@ -81,7 +81,7 @@ export const constantRoute = [
     path: '/product',
     component: () => import('@/layout/index.vue'),
     name: 'Product',
-    redirect: "/product/trademark",
+    redirect: '/product/trademark',
     meta: {
       title: '商品管理',
       icon: 'Goods',

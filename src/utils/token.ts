@@ -17,5 +17,5 @@ export function GET_TOKEN() {
  * 清除token的功能函数
  */
 export function REMOVE_TOKEN() {
-  return localStorage.removeItem("TOKEN")
+  return localStorage.removeItem('TOKEN')
 }
