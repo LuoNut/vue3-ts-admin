@@ -6,8 +6,8 @@ export interface loginFormData {
 
 //返回数据都拥有的类型
 export interface ResponseData {
-  code: number,
-  message: string,
+  code: number
+  message: string
   ok: string
 }
 
@@ -19,10 +19,10 @@ export interface loginResponseData extends ResponseData {
 //用户信息接口返回的数据
 export interface userInfoReponseData extends ResponseData {
   data: {
-    routes: string[],
-    buttons: string[],
-    roles: string[],
-    name: string,
+    routes: string[]
+    buttons: string[]
+    roles: string[]
+    name: string
     avatar: string
   }
 }

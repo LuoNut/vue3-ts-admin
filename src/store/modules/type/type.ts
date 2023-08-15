@@ -9,11 +9,10 @@ export interface userState {
 }
 
 export interface tagetoryState {
-  c1Arr: CategoryData[],
-  c1Id: string,
-  c2Arr: CategoryData[],
-  c2Id: string,
-  c3Arr: CategoryData[],
-  c3Id: string,
-  
+  c1Arr: CategoryData[]
+  c1Id: string
+  c2Arr: CategoryData[]
+  c2Id: string
+  c3Arr: CategoryData[]
+  c3Id: string
 }

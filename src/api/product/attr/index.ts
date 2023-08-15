@@ -6,7 +6,8 @@ enum API {
   C2_URL = '/admin/product/getCategory2/',
   C3_URL = '/admin/product/getCategory3/',
   Attr_URL = '/admin/product/attrInfoList/',
-  ADDORUPDATAATTR_URL = '/admin/product/saveAttrInfo'
+  ADDORUPDATAATTR_URL = '/admin/product/saveAttrInfo',
+  ATTRDELETE_URL = '/admin/product/deleteAttr/',
 }
 
 /**
@@ -37,7 +38,23 @@ export const reqAttr = (
   category1Id: number | string,
   category2Id: number | string,
   category3Id: number | string,
-) => request.get<any, AttrResponseData>(API.Attr_URL + category1Id + '/' + category2Id + '/' + category3Id )
+) =>
+  request.get<any, AttrResponseData>(
+    API.Attr_URL + category1Id + '/' + category2Id + '/' + category3Id,
+  )
 
-export const addOrUpdataArrt = (data: Attr) => 
-request.post<any, any>(API.ADDORUPDATAATTR_URL, data)
+/**
+ * 增加属性或删除属性
+ * @param data
+ * @returns
+ */
+export const addOrUpdataArrt = (data: Attr) =>
+  request.post<any, any>(API.ADDORUPDATAATTR_URL, data)
+
+/**
+ * 删除某个属性
+ * @param attrId 
+ * @returns 
+ */
+export const reqDeleteAttr = (attrId: number) =>
+  request.delete(API.ATTRDELETE_URL + attrId)

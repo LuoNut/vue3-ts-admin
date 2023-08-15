@@ -18,12 +18,16 @@
           <el-button size="small" type="warning" @click="updateTrademark(row)">
             修改
           </el-button>
-          <el-popconfirm :title="`确定删除${row.tmName}`" icon="delete" width="250px" @confirm="removeTrademark(row.id)">
+          <el-popconfirm
+            :title="`确定删除${row.tmName}`"
+            icon="delete"
+            width="250px"
+            @confirm="removeTrademark(row.id)"
+          >
             <template #reference>
               <el-button size="small" type="danger">删除</el-button>
             </template>
           </el-popconfirm>
-          
         </template>
       </el-table-column>
     </el-table>
@@ -239,18 +243,20 @@ const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
 /**
  * 点击删除按钮并确定删除的回调
  */
-const removeTrademark = async(id: number) => {
+const removeTrademark = async (id: number) => {
   const res = await deleteTrademark(id)
   if (res.code === 200) {
     ElMessage({
       type: 'success',
-      message: '删除成功'
+      message: '删除成功',
     })
-    getHasTrademark(trademark.value.length > 1 ? pageNo.value : pageNo.value - 1)
+    getHasTrademark(
+      trademark.value.length > 1 ? pageNo.value : pageNo.value - 1,
+    )
   } else {
     ElMessage({
       type: 'error',
-      message: '删除失败'
+      message: '删除失败',
     })
   }
 }
