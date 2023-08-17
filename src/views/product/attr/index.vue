@@ -150,11 +150,11 @@ watch(
 )
 
 const deleteArrt = async (attId: number) => {
-  console.log(attId);
-  
+  console.log(attId)
+
   const res: any = await reqDeleteAttr(attId)
-  console.log(res);
-  
+  console.log(res)
+
   if (res.code === 200) {
     ElMessage({
       type: 'success',

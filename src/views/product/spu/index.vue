@@ -6,57 +6,17 @@
   <el-card style="margin: 10px 0">
     <!-- spu属性显示 -->
     <div v-show="scene === 0">
-      <el-button
-        type="primary"
-        size="default"
-        icon="Plus"
-        @click="addSpu"
-        :disabled="!CategoryStore.c3Id"
-      >
-        添加SPU
-      </el-button>
+      <el-button type="primary" size="default" icon="Plus" @click="addSpu" :disabled="!CategoryStore.c3Id">添加SPU</el-button>
       <el-table border style="margin: 10px 0" :data="spuData">
-        <el-table-column
-          label="序号"
-          type="index"
-          align="center"
-        ></el-table-column>
+        <el-table-column label="序号" type="index" align="center"></el-table-column>
         <el-table-column label="SPU名称" prop="spuName"></el-table-column>
-        <el-table-column
-          label="SPU描述"
-          prop="description"
-          show-overflow-tooltip
-        ></el-table-column>
+        <el-table-column label="SPU描述" prop="description" show-overflow-tooltip></el-table-column>
         <el-table-column label="SPU操作">
           <template #="{ row, $index }">
-            <el-button
-              type="primary"
-              size="small"
-              @click=""
-              icon="Plus"
-              title="添加SPU"
-            ></el-button>
-            <el-button
-              type="success"
-              size="small"
-              @click="editSpu"
-              icon="Edit"
-              title="修改SPU"
-            ></el-button>
-            <el-button
-              type="warning"
-              size="small"
-              @click=""
-              icon="View"
-              title="查看SPU列表"
-            ></el-button>
-            <el-button
-              type="danger"
-              size="small"
-              @click=""
-              icon="Delete"
-              title="删除SPU"
-            ></el-button>
+            <el-button type="primary" size="small" @click="addSku(row)" icon="Plus" title="添加SKU"></el-button>
+            <el-button type="success" size="small" @click="editSpu(row)" icon="Edit" title="修改SPU"></el-button>
+            <el-button type="warning" size="small" @click="" icon="View" title="查看SPU列表"></el-button>
+            <el-button type="danger" size="small" @click="" icon="Delete" title="删除SPU"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -68,20 +28,20 @@
         background
         layout="prev, pager, next, jumper, -> , sizes ,total"
         :total="total"
-        @current-change="getSpuData"
+        @current-change="getAllSpuData"
         @size-change="changeSize"
       />
     </div>
     <!-- spu属性添加|修改 -->
-    <spuForm v-show="scene === 1" @changeScene="changeScene"></spuForm>
+    <spuForm ref="spuVC" v-show="scene === 1" @changeScene="changeScene"></spuForm>
     <!-- sku属性添加 -->
-    <skuForm v-show="scene === 2"></skuForm>
+    <skuForm ref="skuVC" v-show="scene === 2" @changeScene="changeScene"></skuForm>
   </el-card>
 </template>
 
 <script setup lang="ts">
 import { reqHasSpu } from '@/api/product/spu'
-import { SpuResponseData, records } from '@/api/product/spu/type'
+import { SpuData, SpuResponseData, records } from '@/api/product/spu/type'
 import useCategoryStore from '@/store/modules/useCategoryStore'
 import { ref, watch } from 'vue'
 import skuForm from './skuForm.vue'
@@ -99,34 +59,35 @@ watch(
     spuData.value = []
     total.value = 0
     if (CategoryStore.c3Id) {
-      getSpuData()
+      getAllSpuData()
     }
   },
 )
+
+const spuVC = ref()
+const skuVC = ref()
 
 /**
  * 增加spu
  */
 const addSpu = () => {
+  spuVC.value.addSpuData(CategoryStore.c3Id)
   scene.value = 1
 }
 
 /**
  * 修改spu
  */
-const editSpu = () => {
+const editSpu = (row: SpuData) => {
+  spuVC.value.getSpuData(row)
   scene.value = 1
 }
 /**
  * 获取三级分类下的spu的数据
  */
-const getSpuData = async (pager = 1) => {
+const getAllSpuData = async (pager = 1) => {
   currentPage.value = pager
-  const res: SpuResponseData = await reqHasSpu(
-    currentPage.value,
-    pageSize.value,
-    CategoryStore.c3Id,
-  )
+  const res: SpuResponseData = await reqHasSpu(currentPage.value, pageSize.value, CategoryStore.c3Id)
   if (res.code === 200) {
     spuData.value = res.data.records
     total.value = res.data.total
@@ -137,14 +98,27 @@ const getSpuData = async (pager = 1) => {
  * 分页器下拉菜单改变显示
  */
 const changeSize = () => {
-  getSpuData()
+  getAllSpuData()
 }
 
 /**
  * 增加、修改spu取消
  */
-const changeScene = (number: number) => {
-  scene.value = number
+const changeScene = (data: any) => {
+  scene.value = data.flag
+  if (data.params === 'updata') {
+    getAllSpuData(currentPage.value)
+  } else if (data.params === 'add') {
+    getAllSpuData()
+  } 
+}
+
+/**
+ * 增加sku
+ */
+const addSku = (row: any) => {
+  scene.value = 2
+  skuVC.value.initSkuData(CategoryStore.c1Id, CategoryStore.c2Id, row)
 }
 </script>
 

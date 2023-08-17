@@ -53,8 +53,8 @@ export const addOrUpdataArrt = (data: Attr) =>
 
 /**
  * 删除某个属性
- * @param attrId 
- * @returns 
+ * @param attrId
+ * @returns
  */
 export const reqDeleteAttr = (attrId: number) =>
   request.delete(API.ATTRDELETE_URL + attrId)
