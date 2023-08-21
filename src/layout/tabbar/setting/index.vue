@@ -2,10 +2,7 @@
   <div class="tabbar_right">
     <el-button size="small" icon="Refresh" circle @click="changeRefsh" />
     <el-button size="small" icon="FullScreen" circle @click="fullScreen" />
-    <img
-      :src="userStore.avatar"
-      style="width: 24px; height: 24px; margin: 0 10px; border-radius: 50%"
-    />
+    <img :src="userStore.avatar" style="width: 24px; height: 24px; margin: 0 10px; border-radius: 50%" />
     <el-dropdown>
       <span class="el-dropdown-link">
         {{ userStore.username }}

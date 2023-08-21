@@ -30,7 +30,14 @@
       <el-select v-model="saleAttrIdAndValueName" :placeholder="unSaleAttr.length ? `还未选择${unSaleAttr.length}个` : '无'">
         <el-option :value="`${item.id}:${item.name}`" v-for="item in unSaleAttr" :key="item.id" :label="item.name"></el-option>
       </el-select>
-      <el-button :disabled="!saleAttrIdAndValueName" style="margin-left: 10px" lable="SPU销售属性" type="primary" icon="Plus" @click="addSaleAttr">
+      <el-button
+        :disabled="!saleAttrIdAndValueName"
+        style="margin-left: 10px"
+        lable="SPU销售属性"
+        type="primary"
+        icon="Plus"
+        @click="addSaleAttr"
+      >
         添加属性值
       </el-button>
     </el-form-item>
@@ -50,7 +57,13 @@
             >
               {{ tag.saleAttrValueName }}
             </el-tag>
-            <el-input v-if="row.flag" @blur="toLook(row)" v-model="row.saleAttrValue" size="small" style="width: 100px; margin: 0 5px"></el-input>
+            <el-input
+              v-if="row.flag"
+              @blur="toLook(row)"
+              v-model="row.saleAttrValue"
+              size="small"
+              style="width: 100px; margin: 0 5px"
+            ></el-input>
             <el-button v-else type="primary" icon="Plus" size="small" @click="addSaleValeu(row)"></el-button>
           </template>
         </el-table-column>
@@ -85,7 +98,7 @@ import {
 } from '@/api/product/spu/type'
 import { computed, ref } from 'vue'
 import { addOrUpdataSpu } from '@/api/product/spu'
-
+import { ElMessage } from 'element-plus'
 const $emit = defineEmits(['changeScene'])
 
 const tardemarkData = ref<TrademarkList>([])
@@ -260,7 +273,7 @@ const beforeUpImg = (file: any) => {
  * 点击取消按钮
  */
 const cancel = () => {
-  $emit('changeScene', {flag: 0, params: 'cancel'})
+  $emit('changeScene', { flag: 0, params: 'cancel' })
 }
 
 /**
@@ -283,7 +296,7 @@ const confirm = async () => {
       type: 'success',
       message: spuParams.value.id ? '修改成功' : '添加成功！',
     })
-    $emit('changeScene', {flag: 0, params:spuParams.value.id ? 'updata' : 'add'})
+    $emit('changeScene', { flag: 0, params: spuParams.value.id ? 'updata' : 'add' })
   } else {
     ElMessage({
       type: 'success',

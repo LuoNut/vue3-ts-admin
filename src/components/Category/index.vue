@@ -2,45 +2,18 @@
   <el-card>
     <el-form inline>
       <el-form-item label="一级分类">
-        <el-select
-          v-model="CategoryStore.c1Id"
-          @change="handlerC1"
-          :disabled="scene"
-        >
-          <el-option
-            v-for="item in CategoryStore.c1Arr"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id"
-          />
+        <el-select v-model="CategoryStore.c1Id" @change="handlerC1" :disabled="scene">
+          <el-option v-for="item in CategoryStore.c1Arr" :key="item.id" :label="item.name" :value="item.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="二级分类">
-        <el-select
-          v-model="CategoryStore.c2Id"
-          @change="handlerC2"
-          :disabled="scene"
-        >
-          <el-option
-            v-for="item in CategoryStore.c2Arr"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id"
-          />
+        <el-select v-model="CategoryStore.c2Id" @change="handlerC2" :disabled="scene">
+          <el-option v-for="item in CategoryStore.c2Arr" :key="item.id" :label="item.name" :value="item.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="三级分类">
-        <el-select
-          v-model="CategoryStore.c3Id"
-          @change="handlerC3"
-          :disabled="scene"
-        >
-          <el-option
-            v-for="item in CategoryStore.c3Arr"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id"
-          />
+        <el-select v-model="CategoryStore.c3Id" @change="handlerC3" :disabled="scene">
+          <el-option v-for="item in CategoryStore.c3Arr" :key="item.id" :label="item.name" :value="item.id" />
         </el-select>
       </el-form-item>
     </el-form>

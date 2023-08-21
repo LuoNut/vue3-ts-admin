@@ -53,7 +53,7 @@ export const constantRoute = [
         component: () => import('@/views/acl/user/index.vue'),
         name: 'User',
         meta: {
-          title: '角色管理',
+          title: '用户管理',
           icon: 'User',
         },
       },

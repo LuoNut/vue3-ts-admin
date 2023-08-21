@@ -63,7 +63,7 @@ import { reqAttr } from '@/api/product/attr'
 import { reqHasArrt, reqImageList, addSku } from '@/api/product/spu'
 import { SkuData } from '@/api/product/spu/type'
 import { reactive, ref } from 'vue'
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 
 const $emit = defineEmits(['changeScene'])
 
@@ -144,18 +144,17 @@ const confirm = async () => {
   }, [])
 
   const res = await addSku(skuParams)
-  console.log(res)
 
   if (res.code === 200) {
     ElMessage({
       type: 'success',
-      message: '添加成功'
+      message: '添加成功',
     })
     $emit('changeScene', { flag: 0, Params: '' })
   } else {
     ElMessage({
       type: 'error',
-      message: '添加失败'
+      message: '添加失败',
     })
   }
 }

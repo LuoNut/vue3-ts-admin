@@ -1,5 +1,14 @@
 import request from '@/utils/request'
-import { ResponseImageData, ResponseSaleArrtData, ResponseSaleData, ResponseTardemarkData, SkuData, SpuData, SpuResponseData } from './type'
+import {
+  ResponseAllSku,
+  ResponseImageData,
+  ResponseSaleArrtData,
+  ResponseSaleData,
+  ResponseTardemarkData,
+  SkuData,
+  SpuData,
+  SpuResponseData,
+} from './type'
 
 enum API {
   HASSPU_URL = '/admin/product/',
@@ -9,7 +18,9 @@ enum API {
   BASESALEARRT_URL = '/admin/product/baseSaleAttrList/',
   UPDATASPU_URL = '/admin/product/updateSpuInfo/',
   ADDSPU_URL = '/admin/product/saveSpuInfo/',
-  ADDSKU_URL = '/admin/product/saveSkuInfo'
+  ADDSKU_URL = '/admin/product/saveSkuInfo',
+  FINDSKU_URL = '/admin/product/findBySpuId/',
+  DELETESPU_URL = '/admin/product/deleteSpu/',
 }
 
 /**
@@ -50,4 +61,17 @@ export const addOrUpdataSpu = (data: SpuData) => {
   }
 }
 
-export const addSku = (data: SkuData) => request.post(API.ADDSKU_URL, data)
+/**
+ * 添加sku
+ */
+export const addSku = (data: SkuData) => request.post<any, any>(API.ADDSKU_URL, data)
+
+/**
+ * 获取spu下的sku
+ */
+export const ReqAllSku = (skuId: number | string) => request.get<any, ResponseAllSku>(API.FINDSKU_URL + skuId)
+
+/**
+ * 删除spu
+ */
+export const removeSpu = (spuId: number | string) => request.delete<any, any>(API.DELETESPU_URL + spuId)

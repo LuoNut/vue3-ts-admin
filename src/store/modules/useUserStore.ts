@@ -3,11 +3,7 @@ import { constantRoute } from '@/router/routes'
 import { GET_TOKEN, REMOVE_TOKEN, SET_TOKEN } from '@/utils/token'
 import { defineStore } from 'pinia'
 import { userState } from './type/type'
-import {
-  loginFormData,
-  loginResponseData,
-  userInfoReponseData,
-} from '@/api/user/type'
+import { loginFormData, loginResponseData, userInfoReponseData } from '@/api/user/type'
 
 const useUserStore = defineStore('user', {
   state: (): userState => {

@@ -4,12 +4,7 @@
     <div class="layout_slider" :class="{ fold: LayOutSettingStore.fold }">
       <Logo></Logo>
       <el-scrollbar class="scrollbar">
-        <el-menu
-          text-color="white"
-          background-color="#001529"
-          :default-active="$route.path"
-          :collapse="LayOutSettingStore.fold ? true : false"
-        >
+        <el-menu text-color="white" background-color="#001529" :default-active="$route.path" :collapse="LayOutSettingStore.fold ? true : false">
           <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>

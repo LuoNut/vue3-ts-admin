@@ -2,8 +2,7 @@ function createUserList() {
   return [
     {
       userId: 1,
-      avatar:
-        'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+      avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
       username: 'admin',
       password: '111111',
       desc: '平台管理员',
@@ -14,8 +13,7 @@ function createUserList() {
     },
     {
       userId: 2,
-      avatar:
-        'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+      avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
       username: 'system',
       password: '111111',
       desc: '系统管理员',
@@ -33,9 +31,7 @@ export default [
     method: 'post',
     response: ({ body }) => {
       const { username, password } = body
-      const checkUser = createUserList().find(
-        (u) => u.username === username && u.password === password,
-      )
+      const checkUser = createUserList().find((u) => u.username === username && u.password === password)
       if (!checkUser) {
         return { code: 201, data: { message: '账号或密码不正确' } }
       }

@@ -1,9 +1,7 @@
 <template>
   <el-card class="box-card">
     <!-- 添加按钮 -->
-    <el-button type="primary" @click="addTrademark" icon="Plus">
-      添加品牌
-    </el-button>
+    <el-button type="primary" @click="addTrademark" icon="Plus">添加品牌</el-button>
     <!-- 表格 -->
     <el-table style="margin: 10px 0" border :data="trademark">
       <el-table-column label="序号" width="80px" align="center" type="index" />
@@ -15,15 +13,8 @@
       </el-table-column>
       <el-table-column label="品牌操作">
         <template #="{ row }">
-          <el-button size="small" type="warning" @click="updateTrademark(row)">
-            修改
-          </el-button>
-          <el-popconfirm
-            :title="`确定删除${row.tmName}`"
-            icon="delete"
-            width="250px"
-            @confirm="removeTrademark(row.id)"
-          >
+          <el-button size="small" type="warning" @click="updateTrademark(row)">修改</el-button>
+          <el-popconfirm :title="`确定删除${row.tmName}`" icon="delete" width="250px" @confirm="removeTrademark(row.id)">
             <template #reference>
               <el-button size="small" type="danger">删除</el-button>
             </template>
@@ -43,10 +34,7 @@
       :total="total"
     />
     <!-- 弹出框 -->
-    <el-dialog
-      v-model="dialogFormVisible"
-      :title="trademarkParams.id ? '修改商品' : '添加商品'"
-    >
+    <el-dialog v-model="dialogFormVisible" :title="trademarkParams.id ? '修改商品' : '添加商品'">
       <el-form :model="trademarkParams" :rules="rules" ref="formRef">
         <el-form-item label="商品名称" label-width="80px" prop="tmName">
           <el-input v-model="trademarkParams.tmName" />
@@ -59,11 +47,7 @@
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload"
           >
-            <img
-              v-if="trademarkParams.logoUrl"
-              :src="trademarkParams.logoUrl"
-              class="avatar"
-            />
+            <img v-if="trademarkParams.logoUrl" :src="trademarkParams.logoUrl" class="avatar" />
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>
         </el-form-item>
@@ -78,15 +62,8 @@
 
 <script setup lang="ts">
 import { nextTick, onMounted, reactive, ref } from 'vue'
-import {
-  reqAddAndUpdataTrademark,
-  reqHasTrademark,
-} from '@/api/product/trademark'
-import {
-  TradeMark,
-  TradeMarkResponseData,
-  records,
-} from '@/api/product/trademark/type'
+import { reqAddAndUpdataTrademark, reqHasTrademark } from '@/api/product/trademark'
+import { TradeMark, TradeMarkResponseData, records } from '@/api/product/trademark/type'
 import { ElMessage, type UploadProps } from 'element-plus'
 import { deleteTrademark } from '@/api/product/trademark/index'
 
@@ -141,10 +118,7 @@ const rules = {
  */
 const getHasTrademark = async (pager = 1) => {
   pageNo.value = pager
-  const res: TradeMarkResponseData = await reqHasTrademark(
-    pageNo.value,
-    limit.value,
-  )
+  const res: TradeMarkResponseData = await reqHasTrademark(pageNo.value, limit.value)
   if (res.code === 200) {
     total.value = res.data.total
     trademark.value = res.data.records
@@ -215,11 +189,7 @@ const confirm = async () => {
  * 文件上传前的钩子
  */
 const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
-  if (
-    rawFile.type == 'image/jpeg' ||
-    rawFile.type == 'image/png' ||
-    rawFile.type == 'image/gif'
-  ) {
+  if (rawFile.type == 'image/jpeg' || rawFile.type == 'image/png' || rawFile.type == 'image/gif') {
     if (rawFile.size / 1024 / 1024 < 4) {
       return true
     } else {
@@ -250,9 +220,7 @@ const removeTrademark = async (id: number) => {
       type: 'success',
       message: '删除成功',
     })
-    getHasTrademark(
-      trademark.value.length > 1 ? pageNo.value : pageNo.value - 1,
-    )
+    getHasTrademark(trademark.value.length > 1 ? pageNo.value : pageNo.value - 1)
   } else {
     ElMessage({
       type: 'error',

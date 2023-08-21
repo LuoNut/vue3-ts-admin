@@ -13,10 +13,7 @@ enum API {
  * @param limit 每页的数据个数
  * @returns
  */
-export const reqHasTrademark = (page: number, limit: number) =>
-  request.get<any, TradeMarkResponseData>(
-    API.TRADEMARK_URL + `${page}/${limit}`,
-  )
+export const reqHasTrademark = (page: number, limit: number) => request.get<any, TradeMarkResponseData>(API.TRADEMARK_URL + `${page}/${limit}`)
 /**
  * 新增或修改商品
  * @param data
@@ -29,5 +26,4 @@ export const reqAddAndUpdataTrademark = (data: TradeMark) => {
   }
 }
 
-export const deleteTrademark = (id: number) =>
-  request.delete<any, any>(API.REMOVETRADEMARK_URL + id)
+export const deleteTrademark = (id: number) => request.delete<any, any>(API.REMOVETRADEMARK_URL + id)

@@ -179,3 +179,10 @@ export interface SkuData {
   skuSaleAttrValueList?: saleArr[]
   skuDefaultImg: string //sku图片地址
 }
+
+/**
+ * 获取spu下的sku接口返回的数据类型
+ */
+export interface ResponseAllSku extends ResponstData {
+  data: SkuData[]
+}
