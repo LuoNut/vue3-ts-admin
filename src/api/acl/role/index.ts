@@ -7,7 +7,7 @@ enum API {
   UPDATAROLE_URL = '/admin/acl/role/update/',
   ALLPERMISSION_URL = '/admin/acl/permission/toAssign/',
   SETPERMISSION_URL = '/admin/acl/permission/doAssign/',
-  DELETEROLE_URL = '/admin/acl/role/remove/'
+  DELETEROLE_URL = '/admin/acl/role/remove/',
 }
 
 /**

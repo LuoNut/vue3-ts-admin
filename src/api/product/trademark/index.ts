@@ -13,7 +13,8 @@ enum API {
  * @param limit 每页的数据个数
  * @returns
  */
-export const reqHasTrademark = (page: number, limit: number) => request.get<any, TradeMarkResponseData>(API.TRADEMARK_URL + `${page}/${limit}`)
+export const reqHasTrademark = (page: number, limit: number) =>
+  request.get<any, TradeMarkResponseData>(API.TRADEMARK_URL + `${page}/${limit}`)
 /**
  * 新增或修改商品
  * @param data

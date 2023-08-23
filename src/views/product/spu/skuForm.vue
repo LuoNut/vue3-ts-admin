@@ -16,7 +16,12 @@
       <el-form inline>
         <el-form-item v-for="item in arrtData" :key="item.id" :label="item.attrName">
           <el-select v-model="item.attridAndValueid">
-            <el-option :value="`${item.id}:${sel.id}`" v-for="sel in item.attrValueList" :key="sel.id" :label="sel.valueName"></el-option>
+            <el-option
+              :value="`${item.id}:${sel.id}`"
+              v-for="sel in item.attrValueList"
+              :key="sel.id"
+              :label="sel.valueName"
+            ></el-option>
           </el-select>
         </el-form-item>
       </el-form>

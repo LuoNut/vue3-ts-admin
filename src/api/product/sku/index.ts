@@ -1,13 +1,12 @@
-import request from "@/utils/request";
-import { ResponseSkuData, SkuInfoData } from "./type";
+import request from '@/utils/request'
+import { ResponseSkuData, SkuInfoData } from './type'
 
 enum API {
   ALLSKU_URL = '/admin/product/list/',
   CANCELSKU_URL = '/admin/product/cancelSale/',
   onSku_URL = '/admin/product/onSale/',
   SKUINFO_URL = '/admin/product/getSkuInfo/',
-  DELETESKU_URL = '/admin/product/deleteSku/'
-
+  DELETESKU_URL = '/admin/product/deleteSku/',
 }
 
 /**

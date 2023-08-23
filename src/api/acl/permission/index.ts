@@ -1,11 +1,11 @@
-import request from "@/utils/request";
-import { MenuParams, ResponseAllPermissionData } from "./type";
+import request from '@/utils/request'
+import { MenuParams, ResponseAllPermissionData } from './type'
 
 enum API {
   PERMISSIONALL_URL = '/admin/acl/permission',
   ADDPERMISSION_URL = '/admin/acl/permission/save/',
   UPDATAPERMISSION_URL = '/admin/acl/permission/update',
-  DELETEPERMISSION_URL = '/admin/acl/permission/remove/'
+  DELETEPERMISSION_URL = '/admin/acl/permission/remove/',
 }
 
 /**

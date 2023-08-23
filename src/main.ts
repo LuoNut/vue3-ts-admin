@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 //引入模板的全局样式
 import '@/styles/index.scss'
+// 导入css暗黑模式css
+import 'element-plus/theme-chalk/dark/css-vars.css'
 //引入element-plus插件与样式
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'

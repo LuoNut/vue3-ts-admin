@@ -41,7 +41,12 @@
         <el-table-column label="序号" width="80px" align="center" type="index"></el-table-column>
         <el-table-column label="属性值名称">
           <template #="{ row, $index }">
-            <el-input v-model="row.valueName" v-if="row.flag" @blur="toLook(row, $index)" :ref="(vc: any) => (inputArr[$index] = vc)"></el-input>
+            <el-input
+              v-model="row.valueName"
+              v-if="row.flag"
+              @blur="toLook(row, $index)"
+              :ref="(vc: any) => (inputArr[$index] = vc)"
+            ></el-input>
             <div v-else @click="toEdit(row, $index)">
               {{ row.valueName }}
             </div>

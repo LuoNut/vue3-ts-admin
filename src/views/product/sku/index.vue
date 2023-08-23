@@ -16,7 +16,7 @@
           <el-button type="primary" size="default" @click="upDataSku(row)" :icon="row.isSale ? 'Bottom' : 'Top'"></el-button>
           <el-button type="primary" size="default" @click="EditSku" icon="Edit"></el-button>
           <el-button type="primary" size="default" @click="showSkuInfo(row)" icon="InfoFilled"></el-button>
-          <el-popconfirm :title="`是否删除${row.skuName}商品?`" @confirm="removeSku(row)" style="width: 200px;">
+          <el-popconfirm :title="`是否删除${row.skuName}商品?`" @confirm="removeSku(row)" style="width: 200px">
             <template #reference>
               <el-button type="primary" size="default" @click="" icon="Delete"></el-button>
             </template>
@@ -177,18 +177,18 @@ const showSkuInfo = async (row: SkuData) => {
 /**
  * 删除sku
  */
-const removeSku = async(row: SkuData) => {
+const removeSku = async (row: SkuData) => {
   const res = await reqDeleteSku(row.id)
   if (res.code === 200) {
     ElMessage({
       type: 'success',
-      message: '删除成功'
+      message: '删除成功',
     })
-    getSkuData(skuArr.value.length > 1 ? currentPage.value : currentPage.value -1)
+    getSkuData(skuArr.value.length > 1 ? currentPage.value : currentPage.value - 1)
   } else {
     ElMessage({
       type: 'error',
-      message: '删除失败'
+      message: '删除失败',
     })
   }
 }

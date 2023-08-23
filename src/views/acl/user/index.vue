@@ -2,7 +2,7 @@
   <el-card style="height: 80px">
     <el-form inline class="form">
       <el-form-item label="用户名">
-        <el-input placeholder="请输入要搜索的用户名" v-model="keyword" ></el-input>
+        <el-input placeholder="请输入要搜索的用户名" v-model="keyword"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" size="default" @click="search" :disabled="!keyword.length">搜索</el-button>
@@ -108,7 +108,7 @@ import { reqAllUserInfo, addAndUpdataInfo, AllRoleData } from '@/api/acl/user'
 import { RoleDataList, SetUserParams, userInfo } from '@/api/acl/user/type'
 import { ElMessage } from 'element-plus'
 import { RemoveUser, SelectRemoveUser, setUserRole } from '@/api/acl/user/index'
-import useLayoutSettingStore from "@/store/modules/useLayoutSettingStore";
+import useLayoutSettingStore from '@/store/modules/useLayoutSettingStore'
 
 let currentPage = ref<number>(1)
 let pageSize = ref<number>(5)
@@ -161,7 +161,6 @@ const search = () => {
 const reset = () => {
   LayoutSettingStore.refsh = !LayoutSettingStore.refsh
 }
-
 
 /**
  * 获取所有用户信息
@@ -341,8 +340,8 @@ const seleteUser = (val: any) => {
 /**
  * 批量删除按钮的回调
  */
-const selectDeleteUser = async() => {
-  let idList = selectUser.value.map(item => item.id!)
+const selectDeleteUser = async () => {
+  let idList = selectUser.value.map((item) => item.id!)
   const res: any = await SelectRemoveUser(idList)
   if (res.code === 200) {
     ElMessage({
@@ -357,7 +356,6 @@ const selectDeleteUser = async() => {
     })
   }
 }
-
 
 onMounted(() => {
   getUserinfo()

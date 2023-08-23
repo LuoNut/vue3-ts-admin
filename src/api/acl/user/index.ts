@@ -46,4 +46,4 @@ export const RemoveUser = (id: number) => request.delete(API.REMOVEUSER_URL + id
 /**
  * 删除多个用户
  */
-export const SelectRemoveUser = (userIdList: number[]) => request.delete(API.SELECTREMOVEUSER_URL, {data: userIdList})
+export const SelectRemoveUser = (userIdList: number[]) => request.delete(API.SELECTREMOVEUSER_URL, { data: userIdList })

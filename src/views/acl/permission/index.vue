@@ -9,7 +9,7 @@
           {{ row.level === 3 ? '添加功能' : '添加菜单' }}
         </el-button>
         <el-button type="primary" size="small" @click="EditPermission(row)" :disabled="row.level === 1">编辑</el-button>
-        <el-popconfirm :title="`确定删除${row.name}吗?`" @confirm="removePermission(row)" width="260px" >
+        <el-popconfirm :title="`确定删除${row.name}吗?`" @confirm="removePermission(row)" width="260px">
           <template #reference>
             <el-button type="primary" size="small" :disabled="row.level === 1">删除</el-button>
           </template>

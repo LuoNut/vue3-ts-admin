@@ -160,13 +160,13 @@ const deleteSpu = async (row: SpuData) => {
   if (res.code === 200) {
     ElMessage({
       type: 'success',
-      message: '删除成功'
+      message: '删除成功',
     })
     getAllSpuData(spuData.value.length === 1 ? currentPage.value - 1 : currentPage.value)
   } else {
     ElMessage({
       type: 'error',
-      message: '删除失败'
+      message: '删除失败',
     })
   }
 }

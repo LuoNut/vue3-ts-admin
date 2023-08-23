@@ -29,7 +29,6 @@
               <el-button type="primary" size="small" icon="Delete">删除</el-button>
             </template>
           </el-popconfirm>
-          
         </template>
       </el-table-column>
     </el-table>
@@ -271,13 +270,13 @@ const cancelClickPermission = () => {
  * 点击删除的确定按钮
  */
 const deleteRole = async (row: RoleData) => {
-  console.log(row);
-  
+  console.log(row)
+
   const res = await reqDeleteRole(row.id!)
   if (res.code === 200) {
     ElMessage({
       type: 'success',
-      message: '删除成功！'
+      message: '删除成功！',
     })
     getAllRole(AllRole.value.length > 1 ? currentPage.value : currentPage.value - 1)
   } else {
