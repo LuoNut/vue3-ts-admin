@@ -6,7 +6,7 @@
       </div>
       <div class="bottom">
         <div class="left">
-          <Tourist class="tourist" ></Tourist>
+          <Tourist class="tourist"></Tourist>
           <Sex class="sex"></Sex>
           <Age class="age"></Age>
         </div>
@@ -26,15 +26,15 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import Top from "./components/top/index.vue";
-import Tourist from "./components/tourist/index.vue";
-import Sex from "./components/sex/index.vue";
-import Age from "./components/age/index.vue";
-import Map from "./components/map/index.vue";
-import Line from "./components/line/index.vue";
-import Rank from "./components/rank/index.vue";
-import Year from "./components/year/index.vue";
-import Count from "./components/count/index.vue";
+import Top from './components/top/index.vue'
+import Tourist from './components/tourist/index.vue'
+import Sex from './components/sex/index.vue'
+import Age from './components/age/index.vue'
+import Map from './components/map/index.vue'
+import Line from './components/line/index.vue'
+import Rank from './components/rank/index.vue'
+import Year from './components/year/index.vue'
+import Count from './components/count/index.vue'
 const screen = ref()
 
 const getScale = (w = 1920, h = 1080) => {

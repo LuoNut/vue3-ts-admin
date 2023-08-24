@@ -99,8 +99,8 @@ onMounted(() => {
     }
   }
   .charts {
-        width: 100%;
-        height: 270px;
-    }
+    width: 100%;
+    height: 270px;
+  }
 }
 </style>

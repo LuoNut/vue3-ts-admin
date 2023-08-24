@@ -38,6 +38,20 @@ export const constantRoute = [
       icon: 'Platform',
     },
   },
+
+  {
+    path: '/404',
+    component: () => import('@/views/404/index.vue'),
+    name: '404',
+    meta: {
+      title: '404',
+      hidden: true,
+      icon: 'Notification',
+    },
+  },
+]
+
+export const asyncRoute = [
   {
     path: '/acl',
     component: () => import('@/layout/index.vue'),
@@ -125,16 +139,9 @@ export const constantRoute = [
       },
     ],
   },
-  {
-    path: '/404',
-    component: () => import('@/views/404/index.vue'),
-    name: '404',
-    meta: {
-      title: '404',
-      hidden: true,
-      icon: 'Notification',
-    },
-  },
+]
+
+export const anyRoute = [
   {
     path: '/:pathMatch(.*)*',
     redirect: '/404',

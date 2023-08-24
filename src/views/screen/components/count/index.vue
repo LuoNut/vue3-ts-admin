@@ -19,8 +19,8 @@ onMounted(() => {
     title: {
       text: '游客消费统计',
       textStyle: {
-        color: 'white'
-      }
+        color: 'white',
+      },
     },
     radar: {
       // shape: 'circle',

@@ -1,9 +1,24 @@
 import { reqLogin, reqLogout, reqUserInfo } from '@/api/user'
-import { constantRoute } from '@/router/routes'
+import { constantRoute, asyncRoute, anyRoute } from '@/router/routes'
 import { GET_TOKEN, REMOVE_TOKEN, SET_TOKEN } from '@/utils/token'
 import { defineStore } from 'pinia'
 import { userState } from './type/type'
 import { loginFormData, loginResponseData, userInfoReponseData } from '@/api/user/type'
+import router from '@/router'
+//@ts-ignore
+import cloneDeep from 'lodash/cloneDeep'
+
+const filterAsyncRoute = (asyncRoute: any, routes: any) => {
+  return asyncRoute.filter((item: any) => {
+    if (routes.includes(item.name)) {
+      if (item.children && item.children > 1) {
+        item.children = filterAsyncRoute(item.children, routes)
+        console.log('qqq')
+      }
+      return item
+    }
+  })
+}
 
 const useUserStore = defineStore('user', {
   state: (): userState => {
@@ -37,6 +52,13 @@ const useUserStore = defineStore('user', {
       if (result.code === 200) {
         this.username = result.data.name
         this.avatar = result.data.avatar
+
+        const userAsyncRouter = filterAsyncRoute(cloneDeep(asyncRoute), result.data.routes)
+
+        this.menuRoutes = [...constantRoute, ...userAsyncRouter, ...anyRoute]
+        ;[...userAsyncRouter, ...anyRoute].forEach((item) => {
+          router.addRoute(item)
+        })
         return 'ok'
       } else {
         return Promise.reject(new Error(result.message))

@@ -31,7 +31,7 @@ onMounted(() => {
     title: {
       text: '男女比例',
       textStyle: {
-        color: 'skyblue'
+        color: 'skyblue',
       },
       left: '40%',
     },
@@ -40,7 +40,7 @@ onMounted(() => {
     },
     yAxis: {
       show: false,
-      type: 'category'
+      type: 'category',
     },
     series: [
       {
@@ -50,8 +50,8 @@ onMounted(() => {
         z: 100,
         itemStyle: {
           color: 'skyblue',
-          borderRadius: 20
-        }
+          borderRadius: 20,
+        },
       },
       {
         type: 'bar',
@@ -60,8 +60,8 @@ onMounted(() => {
         barGap: '-100%',
         itemStyle: {
           color: 'pink',
-          borderRadius: 20
-        }
+          borderRadius: 20,
+        },
       },
     ],
     grid: {
@@ -69,7 +69,7 @@ onMounted(() => {
       left: 0,
       right: 0,
       bottom: 0,
-    }
+    },
   })
 })
 </script>

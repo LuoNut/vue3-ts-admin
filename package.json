@@ -25,6 +25,7 @@
     "echarts-liquidfill": "^3.1.0",
     "element-plus": "^2.3.9",
     "husky-init": "8.0.0",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.6",
