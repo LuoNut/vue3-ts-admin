@@ -7,7 +7,7 @@ import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 import china from './china.json'
 
-echarts.registerMap('china', china)
+echarts.registerMap('china', china as any)
 const map = ref()
 onMounted(() => {
   const myEcharts = echarts.init(map.value)

@@ -12,8 +12,8 @@
   </el-card>
 
   <el-card style="margin: 10px 0">
-    <el-button type="primary" size="default" @click="addUser">添加用户</el-button>
-    <el-button type="primary" size="default" @click="selectDeleteUser" :disabled="!selectUser.length">批量删除</el-button>
+    <el-button type="primary" size="default" @click="addUser" v-has="`btn.User.add`" >添加用户</el-button>
+    <el-button type="primary" size="default" @click="selectDeleteUser" :disabled="!selectUser.length" v-has="`btn.User.remove`">批量删除</el-button>
 
     <el-table border style="margin: 10px 0" :data="userInfoList" @selection-change="seleteUser">
       <el-table-column align="center" type="selection"></el-table-column>
@@ -26,11 +26,11 @@
       <el-table-column prop="updateTime" align="center" show-overflow-tooltip label="更新时间"></el-table-column>
       <el-table-column prop="" align="center" label="操作" width="300px">
         <template #="{ row, $index }">
-          <el-button type="primary" size="small" @click="setRole(row)" icon="User">分配角色</el-button>
-          <el-button type="primary" size="small" @click="updataUser(row)" icon="Edit">编辑</el-button>
+          <el-button type="primary" size="small" @click="setRole(row)" icon="User" v-has="`btn.User.assgin`">分配角色</el-button>
+          <el-button type="primary" size="small" @click="updataUser(row)" icon="Edit" v-has="`btn.User.update`">编辑</el-button>
           <el-popconfirm :title="`是否要删除${row.username}?`" @confirm="deleteUser(row)" width="200px">
             <template #reference>
-              <el-button type="primary" size="small" icon="Delete">删除</el-button>
+              <el-button type="primary" size="small" icon="Delete" v-has="`btn.User.remove`">删除</el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -315,7 +315,7 @@ const cancelSetRole = () => {
  * 点击删除按钮
  */
 const deleteUser = async (row: userInfo) => {
-  const res: any = await RemoveUser(row.id)
+  const res: any = await RemoveUser(row.id!)
   if (res.code === 200) {
     ElMessage({
       type: 'success',

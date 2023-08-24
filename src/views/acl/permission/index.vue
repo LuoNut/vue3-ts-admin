@@ -5,13 +5,13 @@
     <el-table-column prop="updateTime" label="修改时间" />
     <el-table-column label="操作">
       <template #="{ row, $index }">
-        <el-button type="primary" size="small" @click="addPermission(row)" :disabled="row.level === 4">
+        <el-button type="primary" size="small" @click="addPermission(row)" :disabled="row.level === 4" v-has="`btn.Permission.add`">
           {{ row.level === 3 ? '添加功能' : '添加菜单' }}
         </el-button>
-        <el-button type="primary" size="small" @click="EditPermission(row)" :disabled="row.level === 1">编辑</el-button>
+        <el-button type="primary" size="small" @click="EditPermission(row)" :disabled="row.level === 1" v-has="`btn.Permission.update`">编辑</el-button>
         <el-popconfirm :title="`确定删除${row.name}吗?`" @confirm="removePermission(row)" width="260px">
           <template #reference>
-            <el-button type="primary" size="small" :disabled="row.level === 1">删除</el-button>
+            <el-button type="primary" size="small" :disabled="row.level === 1" v-has="`btn.Permission.remove`">删除</el-button>
           </template>
         </el-popconfirm>
       </template>

@@ -11,7 +11,7 @@ import cloneDeep from 'lodash/cloneDeep'
 const filterAsyncRoute = (asyncRoute: any, routes: any) => {
   return asyncRoute.filter((item: any) => {
     if (routes.includes(item.name)) {
-      if (item.children && item.children > 1) {
+      if (item.children && item.children.length > 1) {
         item.children = filterAsyncRoute(item.children, routes)
         console.log('qqq')
       }
@@ -27,6 +27,7 @@ const useUserStore = defineStore('user', {
       menuRoutes: constantRoute,
       username: '',
       avatar: '',
+      buttons: [],
     }
   },
   actions: {
@@ -52,6 +53,7 @@ const useUserStore = defineStore('user', {
       if (result.code === 200) {
         this.username = result.data.name
         this.avatar = result.data.avatar
+        this.buttons = result.data.buttons 
 
         const userAsyncRouter = filterAsyncRoute(cloneDeep(asyncRoute), result.data.routes)
 

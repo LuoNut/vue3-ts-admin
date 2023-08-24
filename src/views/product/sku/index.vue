@@ -13,12 +13,24 @@
       <el-table-column prop="price" label="价格" width="200px"></el-table-column>
       <el-table-column label="操作" width="250px" fixed="right">
         <template #="{ row, $index }">
-          <el-button type="primary" size="default" @click="upDataSku(row)" :icon="row.isSale ? 'Bottom' : 'Top'"></el-button>
-          <el-button type="primary" size="default" @click="EditSku" icon="Edit"></el-button>
-          <el-button type="primary" size="default" @click="showSkuInfo(row)" icon="InfoFilled"></el-button>
+          <el-button
+            type="primary"
+            size="default"
+            @click="upDataSku(row)"
+            :icon="row.isSale ? 'Bottom' : 'Top'"
+            v-has="`btn.Sku.updown`"
+          ></el-button>
+          <el-button type="primary" size="default" @click="EditSku" icon="Edit" v-has="`btn.Sku.update`"></el-button>
+          <el-button
+            type="primary"
+            size="default"
+            @click="showSkuInfo(row)"
+            icon="InfoFilled"
+            v-has="`btn.Sku.detail`"
+          ></el-button>
           <el-popconfirm :title="`是否删除${row.skuName}商品?`" @confirm="removeSku(row)" style="width: 200px">
             <template #reference>
-              <el-button type="primary" size="default" @click="" icon="Delete"></el-button>
+              <el-button type="primary" size="default" @click="" icon="Delete" v-has="`btn.Sku.remove`"></el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -178,7 +190,7 @@ const showSkuInfo = async (row: SkuData) => {
  * 删除sku
  */
 const removeSku = async (row: SkuData) => {
-  const res = await reqDeleteSku(row.id)
+  const res = await reqDeleteSku(row.id!)
   if (res.code === 200) {
     ElMessage({
       type: 'success',
