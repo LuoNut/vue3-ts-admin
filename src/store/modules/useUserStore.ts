@@ -53,7 +53,7 @@ const useUserStore = defineStore('user', {
       if (result.code === 200) {
         this.username = result.data.name
         this.avatar = result.data.avatar
-        this.buttons = result.data.buttons 
+        this.buttons = result.data.buttons
 
         const userAsyncRouter = filterAsyncRoute(cloneDeep(asyncRoute), result.data.routes)
 

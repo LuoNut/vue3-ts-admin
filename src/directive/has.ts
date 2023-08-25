@@ -1,5 +1,5 @@
 import pinia from '@/store'
-import  useUserStore  from "@/store/modules/useUserStore";
+import useUserStore from '@/store/modules/useUserStore'
 const UserStore = useUserStore(pinia)
 export const isHasButton = (app: any) => {
   app.directive('has', {
@@ -7,8 +7,6 @@ export const isHasButton = (app: any) => {
       if (!UserStore.buttons.includes(options.value)) {
         el.parentNode.removeChild(el)
       }
-    }
+    },
   })
-  
-  
 }

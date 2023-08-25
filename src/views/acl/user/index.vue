@@ -12,8 +12,10 @@
   </el-card>
 
   <el-card style="margin: 10px 0">
-    <el-button type="primary" size="default" @click="addUser" v-has="`btn.User.add`" >添加用户</el-button>
-    <el-button type="primary" size="default" @click="selectDeleteUser" :disabled="!selectUser.length" v-has="`btn.User.remove`">批量删除</el-button>
+    <el-button type="primary" size="default" @click="addUser" v-has="`btn.User.add`">添加用户</el-button>
+    <el-button type="primary" size="default" @click="selectDeleteUser" :disabled="!selectUser.length" v-has="`btn.User.remove`">
+      批量删除
+    </el-button>
 
     <el-table border style="margin: 10px 0" :data="userInfoList" @selection-change="seleteUser">
       <el-table-column align="center" type="selection"></el-table-column>
